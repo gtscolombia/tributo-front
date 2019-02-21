@@ -94,7 +94,8 @@ export class TributoComponent implements OnInit {
     this.servicio.get('frusutributo/id/'.concat(this.idEnTributo)).subscribe(
       //traer entidad tributo por id, y de ahí sacar el tributo)
       result => {
-        this.tasa = result[0].parametroTributo;
+        console.log(result);
+        this.tasa = result.identtributo.parametroTributo;
         this.settings.loadingSpinner = false;
         console.log(result.datos)
         this.idtributo = result;
