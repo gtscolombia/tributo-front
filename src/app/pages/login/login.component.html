@@ -1,0 +1,46 @@
+<mat-sidenav-container class="wall">
+      <div fxLayout="row" fxLayoutAlign="center center" class="h-100 wall">
+           <form [formGroup]="login" (ngSubmit)="onSubmit(login.value)" fxFlex="80" fxFlex.gt-sm="40" fxFlex.sm="70">
+                  <div class="materialContainer">
+                          <div class="box">
+                             <div class="title"><img src="/assets/img/img_login/logo_tributo.png" width="250px" class="logo"></div>
+                             <mat-form-field class="w-100 input-texto">
+                                  <input matInput placeholder="Correo" formControlName="correo">
+                                  <mat-error> <show-errors [control]="login.controls.correo"></show-errors> </mat-error>
+                              </mat-form-field>
+                              <mat-form-field class="w-100 input-texto-second">
+                                  <input matInput placeholder="Contraseña" formControlName="password">
+                                  <mat-error> <show-errors [control]="login.controls.password"></show-errors> </mat-error>
+                              </mat-form-field>
+                            <mat-checkbox >Recordar</mat-checkbox>
+                             <div class="button login">
+                                <button (click)="ingreso_dev()"><span>Ingresar</span> <i class="fa fa-check"></i></button>
+                             </div>
+                             <a href="" class="pass-forgot">Olvidó su contraseña?</a>
+                          </div>
+                          <div class="overbox">
+                             <div class="material-button alt-2"><div flex="20"> <fa name="google-plus" class="shape"></fa>  </div></div>
+                            
+                             <div class="title"><img src="/assets/img/img_login/logo_tributo_white.png" width="250px" class="logo"></div> 
+                             
+                             <div class="button google">
+                                <button  (click)= "socialSignIn('google')" ><span> <mat-icon><fa name="google" ></fa></mat-icon>Iniciar sesion con Google</span></button>
+                             </div>
+                             <div class="button microsoft">
+                                  <button  ><span> <mat-icon><fa name="facebook-square" ></fa></mat-icon>Iniciar sesion con Facebook</span></button>
+                             </div>
+                               <div class="button r-google">
+                                     <button><span> <mat-icon><fa name="linkedin" ></fa></mat-icon>Iniciar sesion con linkedin</span></button>
+                                  </div>
+                                  <div class="button r-microsoft">
+                                        <button (click)= "ingreso_dev()"><span> <mat-icon><fa name="desktop" ></fa></mat-icon>Ingreso de desarrolador</span></button>
+                                  </div>
+                            </div>
+                   </div>
+            </form>    
+      </div>
+    </mat-sidenav-container>
+    
+
+
+

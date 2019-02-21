@@ -1,0 +1,99 @@
+.ui-carousel-header {
+  background: linear-gradient(to right, rgb(27,129,215) , rgb(43,192,236)) !important;
+    color: white !important;
+    padding: 0.571em 1em;
+    border: none !important;
+    margin: 0;
+    font-weight: 400;
+}
+
+.ui-carousel-button{
+  color: white !important;
+}
+
+.ui-carousel-mobiledropdown{
+  display: none !important;
+}
+
+.alert-danger{
+    background: none !important;
+color: #7f231c;
+  background-color: none !important;
+  border-color: none !important;
+  }
+
+  .alert{
+    padding: 0 !important;
+    margin:  0 !important;
+    border: 0 !important;
+  }
+
+.ui-carousel-viewport{
+  border: none !important;
+}
+.ui-carousel-item{
+  border: none !important;
+}
+
+  .formio-component-declarar{
+    text-align: center !important;
+
+  }
+  .formio-component-editar{
+    text-align: center !important;
+
+  }
+
+  input{
+    color: black !important;  
+  }
+
+  .mat-step-icon-content{
+    color: white !important;
+  }
+
+
+.mat-primary{
+  color: white !important;
+}
+
+
+  formio-alerts{
+    display: none !important;
+  }
+  .button-icon-right{
+   margin: 0 !important;
+ }
+ 
+ .button-icon-right::before{
+   display: none !important;
+ }
+  body{
+    background: #e5e3e3;
+  }
+
+
+  .mat-tab-label{
+    color: white !important;
+}
+
+.mat-tab-link{
+    color: white !important;
+}
+
+.mat-ink-bar {
+  background-color: white !important;
+  position: absolute;
+  bottom: 0;
+  height: 3px !important;
+}
+.mat-tab-header{
+  border-bottom: none !important;
+}
+
+
+.form-control{
+  font-size: 13px !important;
+  }
+  
+  

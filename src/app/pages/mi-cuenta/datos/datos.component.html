@@ -1,0 +1,188 @@
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper layout-margin flex>
+  <mat-step [stepControl]="datos1">
+    <form [formGroup]="datos1">
+
+      <ng-template matStepLabel>Perfil</ng-template>
+
+      <mat-card>
+        <h5 style="font-weight: 400;
+                text-align: center;"> Informacion personal</h5>
+        <h6 style="font-weight: 400;
+                text-align: center; margin-bottom: 20px;">Datos personales basicos</h6>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Tipo de identificación" formControlName="tipoidentificacion" required>
+                <mat-option *ngFor="let ti of tipos_identificacion" [value]="ti.value">
+                  {{ti.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <show-errors [control]="datos1.controls.tipoidentificacion"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <mat-form-field class="w-100">
+              <input matInput type="number" placeholder="Identificacion" formControlName="identificacion" required>
+              <mat-error>
+                <show-errors [control]="datos1.controls.identificacion"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+
+
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Tipo Persona" formControlName="tipousuario" required>
+                <mat-option *ngFor="let tp of tipo_persona" [value]="tp.acronimo">
+                  {{tp.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <show-errors [control]="datos1.controls.tipousuario"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" *ngIf="datos1.value.tipousuario == 'PJ'">
+              <input matInput type="text" placeholder="Razon social" formControlName="razonsocial">
+              <mat-error>
+                <show-errors [control]='datos1.controls.razonsocial'></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Tipo contribuyente" formControlName="tipocontribuyente" required>
+                <mat-option *ngFor="let tc of tipo_contribuyente" [value]="tc.acronimo">
+                  {{tc.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <show-errors [control]="datos1.controls.tipocontribuyente"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout="column">
+          <div fxLayoutAlign="end stretch">
+            <button mat-raised-button color="primary" (click)="verificar(datos1, stepper)">Siguiente</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="datos2">
+    <form [formGroup]="datos2">
+      <ng-template matStepLabel>Contacto</ng-template>
+      <mat-card>
+        <h5 style="font-weight: 400;
+                  text-align: center;"> Información de contacto</h5>
+        <h6 style="font-weight: 400;
+                  text-align: center; margin-bottom: 20px;">Datos de ubicación y
+          contacto</h6>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <mat-form-field class="w-100">
+              <span matPrefix>+57&nbsp;</span>
+              <input matInput type="number" placeholder="Telefono" formControlName="telefono" required>
+              <mat-error>
+                <show-errors [control]="datos2.controls.telefono"></show-errors>
+              </mat-error>
+              <!--<mat-error *ngIf="registro.controls.telefono.errors?.required">Este campo es requerido</mat-error>
+                                                                                                        <mat-error *ngIf="registro.controls.telefono.errors?.maximoExedido" >El numero no debe superar los 10 digitos</mat-error>
+                                                                                                        <mat-error  *ngIf="registro.controls.telefono.errors?.minimoExedido" >El numero no debe ser inferior a los 10 digitos</mat-error>-->
+              <span matSuffix>:-)</span>
+            </mat-form-field>
+
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="Direccion" formControlName="direccion" required>
+              <mat-error>
+                <show-errors [control]="datos2.controls.direccion"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Municipio" formControlName="idmunicipio" required>
+                <mat-option *ngFor="let m of municipios" [value]="m.id">
+                  {{m.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <show-errors [control]="datos2.controls.idmunicipio"></show-errors>
+              </mat-error>
+            </mat-form-field>
+
+
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+
+
+
+
+
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout="column">
+          <div fxLayoutAlign="end stretch">
+            <button mat-raised-button color="primary" (click)="verificar(datos2, stepper)">Finalizar</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+
+    <div style="text-align : center" class="container">
+      <mat-icon style="    width: 100px;
+            font-size: 700%;
+            color: deepskyblue;">check_circle_outline</mat-icon>
+      <h4>!Configuracion mi cuenta realizada con exito!</h4>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+  </mat-step>
+
+
+
+
+
+
+
+</mat-horizontal-stepper>

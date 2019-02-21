@@ -1,0 +1,38 @@
+<div class="container">
+        <mat-card style="padding: 0px; margin-bottom: 15px; border-radius: 0px">
+                <mat-form-field class="w-100" style=" font-size: 14px; padding-right: 20px; padding-left: 20px; position:  relative; top: 7px">
+                        <span matPrefix><mat-icon style="font-size: 30px; color: deepskyblue; position: relative; top: 8px;">search</mat-icon>&nbsp;</span>
+                        <input [(ngModel)]="searchText" matInput type="text" placeholder="Buscar entidad">
+                      </mat-form-field>
+
+                      
+
+        </mat-card>
+        
+        <mat-card>
+
+              
+    
+            <div class="row" style="text-align: center">
+                <div class="col-md-4" *ngFor="let entidad of entidades | EntidadSearch : searchText">
+                        <mat-card style="background-image: url('../../../../../assets/img/app/navbar-landscape.jpg');
+                       max-height: 90px; max-width: 300px; margin-bottom: 25px;" [routerLink]="['/declarar/tributos', entidad.id]">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="muted-text" >
+                            <mat-icon class="icon-lg" style="font-size: 80px; margin-right: 60px; position: relative; bottom: 15px;">account_balance</mat-icon>
+                            <div style="    max-height: 52px;
+                            /* font-kerning: auto; */
+                            text-transform: lowercase;">
+                                <h4>{{entidad.nombre}}</h4>
+                                             
+                            </div>                
+                        </div>            
+                    </mat-card>
+                </div>
+            </div>
+        </mat-card>
+    
+    
+    
+    
+    
+    </div>

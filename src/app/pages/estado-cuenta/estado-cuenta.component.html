@@ -1,0 +1,317 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" class="flex-p">
+        <div class="label-superior"></div>
+            <mat-tab-group mat-align-tabs="start">
+                    <mat-tab label="Tributos">
+                            <mat-card class="p-0 mailbox">
+                                    <mat-sidenav-container>
+                                        <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="mailbox-sidenav mat-elevation-z1">
+                                            <mat-toolbar style="background: white !important;" color="primary" class="p-0" fxLayout="row"
+                                                fxLayoutAlign="space-between center">
+
+                                                <input [(ngModel)]="searchText" type="text" placeholder="Buscar tributo..." class="search mat-elevation-z3"
+                                                style="font-size: 14px;"> 
+                                                
+                                                 
+
+
+
+                                                    <button mat-icon-button [matMenuTriggerFor]="Menudate" #filterMenuTrigger="matMenuTrigger">
+                                                        <mat-icon style="color: rgb(163,163,163)">date_range</mat-icon>
+                                                    </button>
+
+                        
+                                                    <button mat-icon-button [matMenuTriggerFor]="filterMenu" #filterMenuTrigger="matMenuTrigger">
+                                                    <mat-icon style="color: rgb(163,163,163)">more_vert</mat-icon>
+                                                </button>
+
+
+                                            </mat-toolbar>
+                                            <div class="info" style="margin-left: 16px;">
+                                                <span>Tributos: 5  |  $5.000.000</span>
+                                            </div>
+                                            <mat-divider></mat-divider>
+
+                                            <mat-menu #filterMenu="matMenu" xPosition="before" overlapTrigger="true">
+                                                <span (mouseleave)="filterMenuTrigger.closeMenu()">
+                                                    <button mat-menu-item [ngClass]="{'selected' : type == 'todos'}" (click)="type = 'todos';getTributos();">Todos</button>
+                                                    <button mat-menu-item [ngClass]="{'selected' : type == 'borradores'}" (click)="type = 'borradores';getTributos();">Borradores</button>
+                                                    <button mat-menu-item [ngClass]="{'selected' : type == 'presentados'}" (click)="type = 'presentados';getTributos();">Presentados</button>
+                                                    <button mat-menu-item [ngClass]="{'selected' : type == 'liquidados'}" (click)="type = 'liquidados';getTributos();">Liquidados</button>
+                                                    <button mat-menu-item [ngClass]="{'selected' : type == 'eliminados'}" (click)="type = 'eliminados';getTributos();">Eliminados</button>
+                                                </span>
+                                            </mat-menu>
+                                            <mat-menu #Menudate="matMenu" xPosition="before" overlapTrigger="true">
+                                                <span (mouseleave)="filterMenuTrigger.closeMenu()">
+                                                       
+                                                        <span style="    position: absolute;
+                                                        left: 95%;
+                                                        padding: 8px;
+                                                        padding-top: 2px;
+                                                        background: deepskyblue;
+                                                        padding-bottom: 2px;
+                                                        color: white;
+                                                        z-index: 1;">6 </span>
+                                                    <button mat-menu-item >2018</button>
+                                                   
+                                                    <mat-divider></mat-divider>
+                                                    <span style="    position: absolute;
+                                                    left: 95%;
+                                                    padding: 8px;
+                                                    padding-top: 2px;
+                                                    background: deepskyblue;
+                                                    padding-bottom: 2px;
+                                                    color: white;
+                                                    z-index: 1;">6 </span>
+                                                    <button mat-menu-item >2018</button>
+                                                    <mat-divider></mat-divider>
+                                                       
+                                                    <span style="    position: absolute;
+                                                    left: 95%;
+                                                    padding: 8px;
+                                                    padding-top: 2px;
+                                                    background: deepskyblue;
+                                                    padding-bottom: 2px;
+                                                    color: white;
+                                                    z-index: 1;">6 </span>
+                                                    <button mat-menu-item >2018</button>
+                                                    <mat-divider></mat-divider>
+                                                   
+                                                  
+                                                   
+                                                </span>
+                                            </mat-menu>
+                                            
+                        
+                        
+                        
+                        
+                                            <mat-nav-list class="p-0 mailbox-sidenav-list" perfectScrollbar>
+                                                <div *ngFor="let tributo of tributos  | TributoSearchPipe : searchText" (click)="viewDetail(tributo)">
+                                                    <mat-list-item [ngClass]="{'selected': tributo.selected}">
+                        
+                                                        <div matListAvatar>
+                                                            <mat-icon style="    font-size: 50px;
+                                                                position: relative;
+                                                                right: 5px;
+                                                                color: rgb(163,163,163);">library_books</mat-icon>
+                                                        </div>
+                        
+                                                        <div matLine fxLayout="row" fxLayoutAlign="space-between space-between">
+                                                            <h4 style="font-size: 17px;margin: 0;">{{tributo.identtributo.idtributo.nombre |
+                                                                truncate}}</h4>
+                                                        </div>
+                                                        <p matLine class="text-truncate subject">{{tributo.identtributo.identidad.nombre}}</p>
+                                                        <p matLine class="text-truncate subject">{{tributo.fechacrea | date}} </p>
+                        
+                                                        <div [ngClass]="{'BO' : tributo.estado === 'BO', 'PR': tributo.estado === 'PR','EL': tributo.estado == 'EL', 'LI' : tributo.estado == 'LI', 'PA': tributo.estado == 'PA'}"
+                                                            style="font-size: 10px;position: relative;top: 18px;margin: 0px;"><span *ngIf="tributo.estado == 'BO'">Borrador</span>
+                                                            <span *ngIf="tributo.estado == 'PR'">Presentado</span>
+                                                            <span *ngIf="tributo.estado == 'LI'">Liquidado</span>
+                                                            <span *ngIf="tributo.estado == 'PA'">Pagado</span>
+                                                            <span *ngIf="tributo.estado == 'AN'">Anulado</span>
+                                                            <span *ngIf="tributo.estado == 'EL'">Eliminado</span>
+                                                        </div>
+                        
+                        
+                                                    </mat-list-item>
+                                                </div>
+                                            </mat-nav-list>
+                                        </mat-sidenav>
+                                        <div>
+                                            <mat-toolbar style="background: rgb(250,250,250) !important" color="primary" fxLayout="row"
+                                                fxLayoutAlign="space-between center">
+                                                <div fxLayout="row" fxLayoutAlign="start center">
+                                                    <button mat-icon-button (click)="sidenav.toggle()">
+                                                        <mat-icon style="color: rgb(163,163,163) !important">list</mat-icon>
+                                                    </button>
+                        
+                                                    <button *ngIf="tributo && tributo.estado =='BO' && type !='eliminado'" mat-icon-button
+                                                        (click)="delete()" matTooltip="Mover a la papelera" matTooltipPosition="above">
+                                                        <mat-icon style="color: rgb(163,163,163) !important">delete</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button [matMenuTriggerFor]="moreMenu" #moreMenuTrigger="matMenuTrigger"
+                                                        [style.display]="(tributo) ? 'block' : 'none'">
+                                                        <mat-icon style="color: rgb(163,163,163) !important">more_vert</mat-icon>
+                                                    </button>
+                                                </div>
+                        
+                                            </mat-toolbar>
+                                            <mat-menu #moreMenu="matMenu" xPosition="before" overlapTrigger="true">
+                                                <span (mouseleave)="moreMenuTrigger.closeMenu()">
+                                                    <button mat-menu-item>Prueba 1</button>
+                                                    <button mat-menu-item>Prueba 2</button>
+                        
+                                                </span>
+                                            </mat-menu>
+                                            <div class="mailbox-content" perfectScrollbar>
+                                                <div *ngIf="tributo">
+                                                    <mat-list class="p-0">
+                                                        <mat-list-item class="h-100 py-1">
+                                                            <div matLine fxLayout="row" fxLayoutAlign="space-between center">
+                                                                <h2 class="subject">{{tributo.identtributo.idtributo.nombre}}</h2>
+                                                                <mat-icon class="muted-text">picture_as_pdf</mat-icon>
+                                                            </div>
+                                                        </mat-list-item>
+                                                        <mat-divider></mat-divider>
+                        
+                                                    </mat-list>
+                        
+                                                    <div *ngIf="tributo">
+                                                        <div class="container" style="text-align: center">
+                                                            <div class="row">
+                        
+                                                                <div class="col-12" style="text-align: center; margin-top: 15px; margin-bottom: 15px">
+                                                                    <h5>Datos tributo</h5>
+                                                                </div>
+                                                                <div class="col-6" style="text-align: right;font-weight: 500;">Nombre tributo</div>
+                                                                <div class="col-6" style="text-align: left">{{tributo.identtributo.idtributo.nombre}}</div>
+                                                                <div class="col-6" style="text-align: right;font-weight: 500;">Nombre entidad</div>
+                                                                <div class="col-6" style="text-align: left">{{tributo.identtributo.identidad.nombre}}</div>
+                                                                <div class="col-6" *ngIf="tributo.fechacrea" style="text-align: right;font-weight: 500;">Fecha
+                                                                    creación</div>
+                                                                <div *ngIf="tributo.fechacrea" class="col-6" style="text-align: left">{{tributo.fechacrea
+                                                                    | date:' d/M/y HH:mm ' }}</div>
+                                                                <div class="col-6" *ngIf="tributo.fechaborrador" style="text-align: right;font-weight: 500;">Ultima
+                                                                    edición</div>
+                                                                <div *ngIf="tributo.fechaborrador" class="col-6" style="text-align: left">{{tributo.fechaborrador
+                                                                    | date:'d/M/y HH:mm ' }}</div>
+                                                                <div class="col-6" *ngIf="tributo.fechapresentacion" style="text-align: right;font-weight: 500;">Fecha
+                                                                    presentado</div>
+                                                                <div *ngIf="tributo.fechapresentacion" class="col-6" style="text-align: left">{{tributo.fechapresentacion
+                                                                    | date:'d/M/y HH:mm ' }}</div>
+                                                                <div class="col-6" *ngIf="tributo.fechaliquidacion" style="text-align: right;font-weight: 500;">Fecha
+                                                                    liquidación</div>
+                                                                <div *ngIf="tributo.fechaliquidacion" class="col-6" style="text-align: left">{{tributo.fechaliquidacion
+                                                                    | date:'d/M/y HH:mm ' }}</div>
+                                                                <div class="col-6" *ngIf="tributo.fechaanulado" style="text-align: right;font-weight: 500;">Fecha
+                                                                    anulado</div>
+                                                                <div *ngIf="tributo.fechaanulado" class="col-6" style="text-align: left">{{tributo.fechaanulado
+                                                                    | date:'d/M/y HH:mm ' }}</div>
+                                                                        
+                        
+                                                                <div class="col-6" style="text-align: right;font-weight: 500;">Estado tributo</div>
+                                                                <div class="col-6" style="text-align: left"> <span *ngIf="tributo.estado == 'BO'">Borrador</span>
+                                                                    <span *ngIf="tributo.estado == 'PR'">Presentado</span>
+                                                                    <span *ngIf="tributo.estado == 'LI'">Liquidado</span>
+                                                                    <span *ngIf="tributo.estado == 'PA'">Pagado</span>
+                                                                    <span *ngIf="tributo.estado == 'AN'">Anulado</span>
+                                                                    <span *ngIf="tributo.estado == 'EL'">Eliminado</span>
+                        
+                                                                </div>
+                                                                <div class="col-6" style="text-align: right;font-weight: 500;">Valor a pagar</div>
+                                                                <div class="col-6" style="text-align: left">{{tributo.valorapagar | currency :'COP'}}</div>
+                        
+                                                                <div class="col-12" *ngIf="tributo.estado == 'BO'" style="text-align: center ; margin: 15px">
+                                                                    <button mat-raised-button color="primary" class="btn-ok mr-4" (click)="editar()">Editar</button><button
+                                                                        mat-raised-button color="primary" class="btn-ok mr-4" (click)="presentar()">Presentar</button>
+                                                                </div>
+                                                                <div class="col-12" *ngIf="tributo.estado == 'PR'" style="text-align: center; margin: 15px">
+                                                                    <button mat-raised-button color="primary" class="btn-ok mr-4" (click)='liquidar()'>Liquidar</button>
+                                                                </div>
+                                                                <div class="col-12" *ngIf="tributo.estado == 'LI'" style="text-align: center; margin: 15px">
+                                                                    <button mat-raised-button color="primary" class="btn-ok mr-4">Pagar</button>
+                                                                </div>
+                                                                <div class="col-12" *ngIf="tributo.estado == 'AN'" style="text-align: center; margin: 15px">
+                                                                    <button mat-raised-button color="primary" class="btn-ok mr-4">Restaurar
+                                                                        borrador</button> </div>
+                        
+                                                            </div>
+                        
+                        
+                        
+                        
+                        
+                                                            <div class="contenedor-datos" perfectScrollbar>
+                                                                {{tributo.identtributo.idtributo.reporte}}
+                                                            </div>
+                                                        </div>
+                        
+                        
+                                                    </div>
+                                                    <!-- 
+                                                  <div class="mail-body" [innerHTML]="mail.body"></div>
+                                                  <div *ngIf="mail.attachments.length > 0" class="mail-body">
+                                                      <mat-divider></mat-divider>
+                                                     <p>
+                                                          <strong>{{mail.attachments.length}} attachments</strong>
+                                                          <button mat-icon-button matTooltip="Download all attachments" matTooltipPosition="above">
+                                                              <mat-icon>file_download</mat-icon>
+                                                          </button>
+                                                          <button mat-icon-button matTooltip="View all Images" matTooltipPosition="above">
+                                                              <mat-icon>pageview</mat-icon>
+                                                          </button>
+                                                      </p>
+                                                      <div *ngFor="let attachment of mail.attachments; let i = index">
+                                                          <img [src]="attachment" alt="attachment">
+                                                          <h3>image-{{i + 1}}.jpg</h3>
+                                                          <p>
+                                                              <span>457K</span>
+                                                              <button mat-icon-button>
+                                                                  <mat-icon>file_download</mat-icon>
+                                                              </button>
+                                                              <button mat-icon-button>
+                                                                  <mat-icon>pageview</mat-icon>
+                                                              </button>
+                                                          </p>
+                                                      </div>
+                                                  </div>
+                                                  -->
+                                                </div>
+                                                <div *ngIf="!tributo" fxLayout="column" fxLayoutAlign="center center" class="h-100 empty">
+                                                    <mat-icon>library_books</mat-icon>
+                                                    <p>Seleccione un tributo</p>
+                                                </div>
+                                                <form *ngIf="newMail" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="mail-body">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput placeholder="To" formControlName="to">
+                                                    </mat-form-field>
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput placeholder="Cc/Bcc" formControlName="cc">
+                                                    </mat-form-field>
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput placeholder="Subject" formControlName="subject">
+                                                    </mat-form-field>
+                        
+                                                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                        <button mat-raised-button (click)="newMail = false;" type="button">Cancel</button>
+                                                        <button mat-raised-button color="primary" type="submit">Send</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </mat-sidenav-container>
+                                </mat-card>
+
+                    </mat-tab>
+
+
+                    <mat-tab label="Ubicacion">
+                        <h5 style="    text-align: center;
+                        margin-top: 10px;
+                        font-size: 16px;
+                        border-radius: 2px;
+                        padding-top: 5px;
+                        background: linear-gradient(to right, rgb(27, 129, 215), rgb(43, 192, 236)) !important;
+                        padding-bottom: 5px;">Monto por departamento </h5>
+                            <p-chart type="bar" responsive= "true"	 (onDataSelect)="ver($event)" height="450" [data]="data_ubicacion"></p-chart>
+
+
+                    </mat-tab>
+
+
+
+                    <mat-tab label="Estados">
+                        <h5 style="    text-align: center;
+                        margin-top: 10px;
+                        font-size: 16px;
+                        border-radius: 2px;
+                        padding-top: 5px;
+                        background: linear-gradient(to right, rgb(27, 129, 215), rgb(43, 192, 236)) !important;
+                        padding-bottom: 5px;">Monto por Estado</h5>
+                        <p-chart type="pie" responsive= "true"	  (onDataSelect)="ver($event)" height="450" [data]="data_estado"></p-chart>
+
+                    </mat-tab>
+                  </mat-tab-group>
+    </div>
+</div>

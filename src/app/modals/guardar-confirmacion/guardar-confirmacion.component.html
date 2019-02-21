@@ -1,0 +1,14 @@
+<h2 mat-dialog-title style="    font-weight: 390;
+text-align: center;">{{data.title}}</h2>
+<mat-dialog-content style="text-align: center">{{data.message}}
+    <span style="
+    font-size: 11px;
+    text-align: center;
+    color: darkgray;
+    display: block;
+    ">{{data.note}}</span></mat-dialog-content>
+
+<mat-dialog-actions style="position: relative; left : 30px; width: 180px;">
+    <button mat-button  (click)="si()" [mat-dialog-close]="data" cdkFocusInitial>Si</button>
+    <button mat-button  (click)="no()" [mat-dialog-close]="data" cdkFocusInitial>No</button>
+</mat-dialog-actions>

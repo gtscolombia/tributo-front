@@ -1,0 +1,74 @@
+<div class="container">
+    <form [formGroup]="datos">
+
+        <mat-card style="padding: 35px">
+            <div class="row">
+
+
+                <div class="col-sm-6">
+                    <mat-card-title style="font-weight: 300; text-align: center">{{correo}}</mat-card-title>
+                    <mat-card-subtitle style="text-align: center"> Editar datos basicos de perfil </mat-card-subtitle>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center">
+                            <img [src]="imagen" width="100px" style="border-radius: 50%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field class="w-100 input-texto">
+                                <input matInput placeholder="Nombres" formControlName="nombres" required>
+                                <mat-error>
+                                    <show-errors [control]="datos.controls.nombres"></show-errors>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <mat-form-field class="w-100 input-texto">
+                                <input matInput placeholder="Apellidos" formControlName="apellidos" required>
+                                <mat-error>
+                                    <show-errors [control]="datos.controls.apellidos"></show-errors>
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5 style="text-align: center; font-weight: 300;">Cambiar contraseña</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field class="w-100 input-texto">
+                                <input matInput type="password" placeholder="Contraseña" formControlName="pass">
+                                <mat-error>
+                                    <show-errors [control]="datos.controls.pass"></show-errors>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field class="w-100 input-texto">
+                                <input matInput type="password" placeholder="Repetir contraseña" formControlName="repetirpass">
+                                <mat-error>
+                                    <show-errors [control]="datos.controls.repetirpass"></show-errors>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-4" style="text-align: center; margin-top: 20px; margin-bottom: 0px !important;">
+                    <button mat-raised-button color="primary" class="btn-ok mr-4" (click)="guardar()">Guardar</button>
+
+                </div>
+
+            </div>
+        </mat-card>
+
+    </form>
+</div>

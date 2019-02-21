@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <mat-card style="text-align: center">
+              <h4>{{entidadTitle}}</h4>
+              <h5 style="margin-bottom: 25px;">{{title}}</h5>
+                <h6 style="font-weight: 300;
+                margin-top: 0px;
+                position: relative;
+                top: -20px;">Tasa: {{tasa}}%</h6>
+              <formio [form] ="formulario"  [submission]="datos" [refresh]="refreshForm" (submit)="enviarFormulario($event)"> </formio>
+              <button style="    padding: 0;
+              margin: 0;
+              position: relative;
+              top: -16px;
+              background: deepskyblue;" (click)="goback()" mat-fab> <mat-icon>arrow_back</mat-icon></button> 
+          </mat-card>
+      </div>
+  </div>
+</div>
+
+
+
+

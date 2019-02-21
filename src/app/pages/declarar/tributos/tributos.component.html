@@ -1,0 +1,39 @@
+
+
+<div class="container">
+    <mat-card style="padding: 0px; margin-bottom: 15px; border-radius: 0px">
+        <mat-form-field class="w-100" style=" font-size: 14px; padding-right: 20px; padding-left: 20px; position:  relative; top: 7px">
+                <span matPrefix><mat-icon style="font-size: 30px; color: deepskyblue; position: relative; top: 8px;">search</mat-icon>&nbsp;</span>
+                <input [(ngModel)]="searchText" matInput type="text" placeholder="Buscar entidad">
+              </mat-form-field>
+
+              
+
+</mat-card>
+  <mat-card>
+
+
+      <div class="row" style="text-align: center">
+          <div class="col-md-4" *ngFor="let tributo of tributos | TributoByUsuTributoSearchPipe: searchText">
+                  <mat-card (click)="seleccionarPeriodo(tributo.id)" style="background-image: url('../../../../../assets/img/app/navbar-landscape2.jpg');
+                  max-height: 90px; max-width: 300px; margin-bottom: 25px;">
+                  <div fxLayout="row" fxLayoutAlign="space-between center" class="muted-text" >
+                      <mat-icon class="icon-lg" style="font-size: 80px; margin-right: 60px; position: relative; bottom: 15px;">library_books
+                      </mat-icon>
+                      <div style="    max-height: 52px;
+                      /* font-kerning: auto; */
+                      text-transform: lowercase;">
+                          <h5>{{tributo.idtributo.nombre}}</h5>
+                                       
+                      </div>                
+                  </div>            
+              </mat-card>
+          </div>
+      </div>
+  </mat-card>
+
+
+
+
+
+</div>

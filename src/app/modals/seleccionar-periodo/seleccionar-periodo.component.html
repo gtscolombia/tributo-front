@@ -1,0 +1,34 @@
+<h2 mat-dialog-title style="    font-weight: 390;
+text-align: center;">Seleccione el periodo</h2>
+    <form>
+<mat-form-field class="w-100">
+    <mat-select [(ngModel)]="tipoPeriodo" placeholder="Tipo periodo"  [ngModelOptions]="{standalone: true}" required> 
+      <mat-option *ngFor="let periodo of tiposPeriodos" value="{{periodo}}" (click)="get_periodos(periodo)">
+          {{periodo}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+  <mat-form-field class="w-100" *ngIf="tipoPeriodo">
+        <mat-select [(ngModel)]="periodo" placeholder="Periodo"  [ngModelOptions]="{standalone: true}" required>
+          <mat-option *ngFor="let periodo of periodos" value="{{periodo.valor}}">
+              {{periodo.descripcion}}
+          </mat-option>
+         
+        </mat-select>
+       
+      </mat-form-field>
+
+
+
+
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]>Cancelar</button>
+    <button mat-button (click)="liquidar()" >Declarar</button>
+
+</mat-dialog-actions>
+
+</form>
+

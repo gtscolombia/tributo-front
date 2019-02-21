@@ -1,0 +1,50 @@
+<p style="text-align: center;
+font-weight: 400;
+font-size: 15px;
+margin-top: 10px;">
+  Departamento de {{data.names.label}}
+</p>
+
+
+<p-carousel headerText="Total Entidades : 5 " [value]="cars">
+    
+        <ng-template let-item pTemplate="item">
+          <div class="col-12" style=" text-align: center"> <mat-icon style="font-size: 90px;
+            position: relative;
+            left: -11%;
+            margin-top: 10px;
+            color: darkgray;">account_balance</mat-icon>
+          </div>
+
+<h5 style=" text-align: center">Secretaría de Manizales</h5>
+
+
+<div class="row">
+    <div class="col-6" style="text-align: right;font-weight: 500;">Tributos pagados</div><div class="col-6" style="text-align: left">1</div>
+    <div class="col-6" style="text-align: right;font-weight: 500;">Tributos Liquidados</div><div class="col-6" style="text-align: left">1</div>
+    <div class="col-6" style="text-align: right;font-weight: 500;">Tributos Anulados </div><div class="col-6" style="text-align: left">1</div>
+  <div class="col-6" style="text-align: right;font-weight: 500;">Total Tributos </div><div class="col-6" style="text-align: left">3</div>
+<div class="col-12">  <mat-divider></mat-divider>
+</div>
+  <div class="col-6" style="text-align: right;font-weight: 500;">Total a pagar </div><div class="col-6" style="text-align: left">65000000</div>
+  <div class="col-6" style="text-align: right;font-weight: 500;">Total Pagado </div><div class="col-6" style="text-align: left">500000</div>
+  <div class="col-6" style="text-align: right;font-weight: 500;">Monto total </div><div class="col-6" style="text-align: left">70000000</div>
+  
+
+</div>
+
+<div class="col-12"  style="text-align: center; margin: 15px">
+  <button mat-raised-button color="primary" class="btn-ok mr-4">Ver Tributos</button> </div>
+          
+
+          
+        </ng-template>
+    
+</p-carousel>
+ 
+
+
+
+
+
+

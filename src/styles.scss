@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://cdn.quilljs.com/1.2.2/quill.snow.css');
+@import url('https://cdn.quilljs.com/1.2.2/quill.bubble.css');
+    
+@import url(../node_modules/font-awesome/css/font-awesome.css);
+
+// indigo-pink, deeppurple-amber, purple-green and pink-bluegrey.
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import "app/theme/styles/base";
+@import "app/theme/styles/theme";
+@import "app/theme/styles/libs-override";
+@import "app/theme/styles/rtl";
+
+
+
+.custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control{
+    background-image: linear-gradient(0deg,deepskyblue 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+}
+
+.control-label{
+    margin: 0 !important;
+}
+.form-control{
+    padding: 8px !important;
+}
+.formio-form{
+    text-align: left;
+    padding: 15px;
+}
+
+.formio-component-submit{
+    text-align: center !important;
+}
+.btn-primary{
+    background: deepskyblue !important;
+    color: white !important;
+    text-align: center !important;
+}
+
+.alert-success{
+    display: none;
+}
